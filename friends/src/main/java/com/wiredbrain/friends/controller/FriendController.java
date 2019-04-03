@@ -23,13 +23,29 @@ public class FriendController {
     @Autowired
     private FriendService friendService;
 
-    //@PostMapping("/friend")
-    //Friend create(@RequestBody Friend friend) throws ValidationException {
-    //    if(friend.getFirstName() != null && friend.getLastName() != null)
-    //        return friendService.save(friend);
-    //    else
-    //        throw new ValidationException("friend cannot be created");
-    //}
+    /**
+     * @PostMapping("/friend")
+     * Friend create(@RequestBody Friend friend) throws ValidationException {
+     *   if(friend.getFirstName() != null && friend.getLastName() != null)
+     *      return friendService.save(friend);
+     *   else
+     *      throw new ValidationException("friend cannot be created");
+     */
+
+    /**
+     * Class Error Handling
+     * send path to this method
+     * good path return Entity
+     * bad path throw Exception with ExceptionHandler
+     * @param
+     * @return
+     *
+     * @ResponseStatus(HttpStatus.BAD_REQUEST)
+     * @ExceptionHandler(ValidationException.class)
+     * ErrorMessage exceptionHandler(ValidationException e){
+     *      return new ErrorMessage("400" ,e.getMessage());
+     * }
+     */
 
     @PostMapping("/friend")
     Friend create(@Valid @RequestBody Friend friend){
@@ -45,19 +61,7 @@ public class FriendController {
     }
 
 
-    /**
-     * Class Error Handling
-     * send path to this method
-     * good path return Entity
-     * bad path throw Exception with ExceptionHandler
-     * @param
-     * @return
-     */
-    //@ResponseStatus(HttpStatus.BAD_REQUEST)
-    //@ExceptionHandler(ValidationException.class)
-    //ErrorMessage exceptionHandler(ValidationException e){
-    //    return new ErrorMessage("400" ,e.getMessage());
-    //}
+
 
     @GetMapping("/friend")
     Iterable<Friend> read() {
@@ -85,6 +89,7 @@ public class FriendController {
     void delete(@PathVariable Integer id) {
         friendService.deleteById(id);
     }
+
     @GetMapping("/friend/{id}")
     Optional<Friend> findById(@PathVariable Integer id){
         return friendService.findById(id);

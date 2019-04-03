@@ -12,6 +12,21 @@ public class Address {
     private int id;
     private String street;
     private String city;
+    private String state;
+
+    //@Embedded
+    //private Zipcode zipcode;
+
+
+    public Address() {
+    }
+
+    public Address(String street, String city, String state) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        //this.zipcode = zipcode;
+    }
 
     public int getId() {
         return id;
@@ -36,4 +51,20 @@ public class Address {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    //public Zipcode getZipcode() {
+    //    return zipcode;
+    //}
+
+    //public void setZipcode(Zipcode zipcode) {
+    //this.zipcode = zipcode;
+    //}
 }

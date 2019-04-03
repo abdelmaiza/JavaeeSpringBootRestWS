@@ -14,13 +14,13 @@ public class ControllerExceptionHandler {
 
     /**
      * Global Error Handling
-     * @param e
+     * @param ex
      * @return
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ValidationException.class)
-    ErrorMessage exceptionHandler(ValidationException e){
-        return new ErrorMessage("400" ,e.getMessage());
+    ErrorMessage exceptionHandler(ValidationException ex){
+        return new ErrorMessage("400" ,ex.getMessage());
     }
 }

@@ -12,25 +12,33 @@ public class Friend {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @JsonProperty("first_name")
     @NotBlank
     private String firstName;
-
     @JsonProperty("last_name")
     @NotBlank
     private String lastName;
-
     int age;
-
     @JsonIgnore
     private boolean married;
-
-    @Embedded
-    private Degree degree;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses;
+
+    public Friend() {
+    }
+
+    public Friend(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Friend(@NotBlank String firstName, @NotBlank String lastName, int age, boolean married, List<Address> addresses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.married = married;
+        this.addresses = addresses;
+    }
 
     public int getAge() {
         return age;
@@ -46,15 +54,6 @@ public class Friend {
 
     public void setMarried(boolean married) {
         this.married = married;
-    }
-
-    public Friend() {
-    }
-
-    public Friend(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public int getId() {
@@ -89,11 +88,4 @@ public class Friend {
         this.addresses = addresses;
     }
 
-    public Degree getDegree() {
-        return degree;
-    }
-
-    public void setDegree(Degree degree) {
-        this.degree = degree;
-    }
 }
